@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this dataset or code, please cite it as below."
+type: dataset
+title: "Global Anthem Atlas: themes, Energy and Wisdom indices for the lyrics of national anthems and national songs"
+version: 1.0.0
+# date-released: YYYY-MM-DD   (set on publication)
+# doi: 10.5281/zenodo.XXXXXXX (set after Zenodo reserves the DOI)
+url: "https://github.com/KPRASANT9/atlas-awareness"
+repository-code: "https://github.com/KPRASANT9/atlas-awareness"
+authors:
+  - name: "atlas-awareness"
+    affiliation: "atlas-awareness"
+license: CC-BY-SA-4.0
+abstract: >-
+  Lyrics-based theme profiles for 242 national anthems and national songs (254 songs listed, 219 countries and
+  regions), with two descriptive indices (Energy = Mobilisation + Awakening; Wisdom = justice/peace, truth/virtue,
+  future), 90% uncertainty intervals, an original-language etymology layer for 159 songs, per-country spectra
+  and the full reproducible pipeline. Texts are included only where rights allow; all others can be rehydrated
+  from pinned public sources and verified by hash. Code is MIT-licensed. Built with AI agents under the direction
+  of the author, atlas-awareness, who is responsible for the content.
+keywords:
+  - national anthems
+  - computational text analysis
+  - nationalism
+  - sentence embeddings
+  - zero-shot classification
+  - etymology
+  - cultural analytics
+references:
+  - type: article
+    title: "Datasheets for Datasets"
+    authors:
+      - family-names: Gebru
+        given-names: Timnit
+    journal: "Communications of the ACM"
+    year: 2021
+    doi: 10.1145/3458723

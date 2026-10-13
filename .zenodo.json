@@ -1,0 +1,33 @@
+{
+  "title": "Global Anthem Atlas: themes, Energy and Wisdom indices for the lyrics of national anthems and national songs",
+  "upload_type": "dataset",
+  "version": "1.0.0",
+  "language": "eng",
+  "access_right": "open",
+  "license": "cc-by-sa-4.0",
+  "creators": [
+    {
+      "name": "atlas-awareness",
+      "affiliation": "atlas-awareness"
+    }
+  ],
+  "description": "<p>Lyrics-based theme profiles for 242 national anthems and national songs (254 songs listed across 219 countries and regions). Each song has 12 theme scores, two descriptive indices with 90% uncertainty intervals (<b>Energy</b> = Mobilisation + Awakening; <b>Wisdom</b> = justice/peace, truth/virtue, future), per-country spectra, and the reproducible pipeline plus the interactive site.</p><p><b>Energy and Wisdom describe what the words of a song talk about, not countries or peoples; no ranking of nations is supported.</b></p><p><b>Texts.</b> This GitHub archive and site do not include withheld lyrics or the raw in-copyright lyric table. Lyrics and translations appear in the public package only where rights allow; other texts can be rehydrated from pinned public sources.</p><p><b>Licences.</b> Data, results, figures and documentation: CC BY-SA 4.0. Code: MIT.</p><p><b>AI use.</b> Built with AI agents under the direction of the author, atlas-awareness, who is responsible for the content.</p>",
+  "keywords": [
+    "national anthems",
+    "national songs",
+    "computational text analysis",
+    "nationalism",
+    "sentence embeddings",
+    "zero-shot classification",
+    "etymology",
+    "cultural analytics"
+  ],
+  "notes": "Public package only. Does not include withheld/ lyrics, agent_translations, or the raw lyric dataset.csv.",
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://github.com/KPRASANT9/atlas-awareness",
+      "resource_type": "software"
+    }
+  ]
+}
