@@ -1,4 +1,4 @@
-name: Create v1.0.0 release
+name: Create v1.0.1 release
 on:
   push:
     branches: [master, main]
@@ -10,26 +10,27 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Create GitHub release v1.0.0 if missing
+      - name: Create GitHub release v1.0.1 if missing
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          if gh release view v1.0.0 >/dev/null 2>&1; then
-            echo "v1.0.0 already exists"
+          if gh release view v1.0.1 >/dev/null 2>&1; then
+            echo "v1.0.1 already exists"
             exit 0
           fi
           cat > /tmp/release-notes.md <<'EOF'
-          First public release of the Global Anthem Atlas.
+          Complete sharded public tree for the Global Anthem Atlas (site data for map/explore).
 
           Author: atlas-awareness (name and affiliation).
           Built with AI agents; atlas-awareness is responsible for the content.
 
-          This archive is the public package only: interactive site, scores, pipeline, and documentation.
-          It does not include withheld lyrics, agent translations, or the raw in-copyright lyric table.
+          This archive is the public package only. It does not include withheld lyrics,
+          agent translations, or the raw in-copyright lyric table.
 
           Licences: data CC BY-SA 4.0; code MIT.
 
-          Zenodo mints a DOI from this GitHub release after the repository is enabled at https://zenodo.org/account/settings/github/
+          Prefer this tag over v1.0.0 for Zenodo: it includes all song shards and world-arc shards.
+          Enable the repo at https://zenodo.org/account/settings/github/ then publish this release.
           EOF
-          gh release create v1.0.0 --target "${GITHUB_SHA}" --title "v1.0.0 Global Anthem Atlas" --notes-file /tmp/release-notes.md
+          gh release create v1.0.1 --target "${GITHUB_SHA}" --title "v1.0.1 Global Anthem Atlas" --notes-file /tmp/release-notes.md
