@@ -25,7 +25,7 @@ Submission targets (for the author; not part of the paper):
 - arXiv: primary cs.CL (Computation and Language); cross-list cs.CY (Computers and Society) and physics.soc-ph (Physics and Society).
 - SocArXiv: Social and Behavioral Sciences > Sociology (Culture; Political sociology); also Arts and Humanities > Music (lyrics).
 Citation check (2026-10-13): every reference below was verified against Crossref, arXiv or Open Library, including DOI, year, venue and pages. None is unverified.
-Author filled: atlas-awareness (name and affiliation). Remaining placeholders: [DOI], GitHub URL (filled on publish). Contact email omitted.
+Author filled: atlas-awareness (name and affiliation). GitHub: https://github.com/KPRASANT9/atlas-awareness. Remaining placeholder: Zenodo DOI (filled after the GitHub release is archived). Contact email omitted.
 -->
 
 # 1 Introduction
@@ -158,7 +158,7 @@ Energy is how strongly a text rouses its listeners. It has two components.
 
 \[ \text{Awk}_s=\operatorname{std}\big(\tfrac23\tilde z_{\text{awk}}+\tfrac13\cdot\tfrac12(\tilde z_P+\tilde z_F)\big),\qquad E_s=\operatorname{std}\big(\tfrac12\text{Mob}_s+\tfrac12\text{Awk}_s\big). \]
 
-The ⅓/⅓ split and the equal blend were fixed before any results were seen. We report \(E\) for Mobilisation weights from 0.3 to 0.7.
+The ⅔/⅓ split and the equal blend were fixed before any results were seen. We report \(E\) for Mobilisation weights from 0.3 to 0.7.
 
 ## 4.4 Wisdom
 
@@ -362,7 +362,7 @@ The analysis was built with AI agents. AI coding and research agents wrote the p
 
 # 10 Data and code availability
 
-**Where.** Data, scores, figures and code are deposited at Zenodo, DOI [to be assigned]. The code is also on GitHub, at [URL].
+**Where.** Data, scores, figures and code are deposited at Zenodo, DOI [to be assigned after the GitHub release is archived]. The code and interactive site are on GitHub at <https://github.com/KPRASANT9/atlas-awareness>.
 
 **Licences.** Data, results, figures and documentation are under CC BY-SA 4.0, because the release includes CC BY-SA translations adapted from English Wikipedia; attribution for each is in `NOTICE.md`. Code is under MIT.
 
@@ -529,7 +529,7 @@ references:
   page: 309-329
   issued: {year: 2015}
   DOI: 10.1111/nana.12123
-- id: lauer2024
+- id: laurer2024
   type: article-journal
   author: [{family: Laurer, given: Moritz}, {family: van Atteveldt, given: Wouter}, {family: Casas, given: Andreu}, {family: Welbers, given: Kasper}]
   title: "Less annotating, more classifying: Addressing the data scarcity issue of supervised machine learning with deep transfer learning and BERT-NLI"
