@@ -1,14 +1,27 @@
 /* Shared data loading, colour scales and formatting. d3 is loaded globally from vendor/. */
 const d3 = window.d3;
 
+async function fetchJson(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`Could not load ${url} (${r.status})`);
+  return r.json();
+}
+
+/** Prefer a single atlas.json; fall back to sharded files that fit GitHub MCP uploads. */
 let atlasPromise = null;
 export function loadAtlas() {
   if (!atlasPromise) {
-    atlasPromise = fetch("data/atlas.json")
-      .then((r) => {
-        if (!r.ok) throw new Error(`Could not load data (${r.status})`);
-        return r.json();
-      })
+    atlasPromise = fetchJson("data/atlas.json")
+      .catch(() =>
+        Promise.all([
+          fetchJson("data/atlas-core.json"),
+          ...[0, 1, 2, 3, 4, 5, 6].map((i) => fetchJson(`data/atlas-songs-${i}.json`)),
+        ]).then(([core, ...parts]) => ({
+          meta: core.meta,
+          geos: core.geos,
+          songs: Object.assign({}, ...parts),
+        }))
+      )
       .then((data) => {
         data.geoByName = new Map(data.geos.map((g) => [g.name, g]));
         data.songList = Object.values(data.songs);
@@ -23,6 +36,15 @@ export function loadAtlas() {
       });
   }
   return atlasPromise;
+}
+
+export function loadWorldTopo() {
+  return fetchJson("data/world.topo.json").catch(() =>
+    Promise.all([
+      fetchJson("data/world-head.json"),
+      ...[0, 1, 2, 3, 4].map((i) => fetchJson(`data/world-arcs-${i}.json`)),
+    ]).then(([head, ...arcParts]) => ({ ...head, arcs: arcParts.flat() }))
+  );
 }
 
 export const LAYERS = [
@@ -116,7 +138,7 @@ export function intervalWidth(song, layer) {
 
 const MINUS = "\u2212";
 export function fmt(v, nd = 2) {
-  if (v == null || !isFinite(v)) return "–";
+  if (v == null || !isFinite(v)) return "\u2013";
   const s = Math.abs(v).toFixed(nd);
   if (Number(s) === 0) return s;
   return (v < 0 ? MINUS : "+") + s;
@@ -173,8 +195,8 @@ export function drawBivariateLegend(svg, size = 96) {
       const w = BIV_RANGE - (2 * BIV_RANGE * (j + 0.5)) / n;
       g.append("rect").attr("x", i * cell).attr("y", j * cell).attr("width", cell + 0.3).attr("height", cell + 0.3).attr("fill", bivariateColor(e, w));
     }
-  g.append("text").attr("x", size / 2).attr("y", size + 14).attr("text-anchor", "middle").attr("class", "legend-axis").text("Energy →");
-  g.append("text").attr("transform", `translate(-8,${size / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("class", "legend-axis").text("Wisdom →");
+  g.append("text").attr("x", size / 2).attr("y", size + 14).attr("text-anchor", "middle").attr("class", "legend-axis").text("Energy \u2192");
+  g.append("text").attr("transform", `translate(-8,${size / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("class", "legend-axis").text("Wisdom \u2192");
   g.append("text").attr("x", 0).attr("y", size + 28).attr("class", "legend-tick").text("calm");
   g.append("text").attr("x", size).attr("y", size + 28).attr("text-anchor", "end").attr("class", "legend-tick").text("rousing");
 }
