@@ -1,0 +1,38 @@
+{
+  "title": "Global Anthem Atlas: themes, Energy and Wisdom indices for the lyrics of national anthems and national songs (v1.0.0)",
+  "upload_type": "dataset",
+  "version": "1.0.0",
+  "language": "eng",
+  "access_right": "open",
+  "license": "cc-by-sa-4.0",
+  "creators": [
+    {
+      "name": "atlas-awareness",
+      "affiliation": "atlas-awareness"
+    }
+  ],
+  "description": "<p>Lyrics-based theme profiles for 242 national anthems and national songs (254 songs listed across 219 countries and regions). Each song has 12 theme scores (English lexicon, sentence-embedding anchors, zero-shot NLI and, for 159 songs, original-language roots), two descriptive indices with 90% uncertainty intervals (<b>Energy</b> = Mobilisation + Awakening; <b>Wisdom</b> = justice/peace, truth/virtue, future), five soft archetypes, per-country spectra with a data-confidence grade, curated etymology for 295 + 59 key terms, blind hand labels, and the complete reproducible pipeline.</p><p><b>Energy and Wisdom describe what the words of a song talk about, not countries or peoples; no ranking of nations is supported.</b> Single-song levels carry about one level of uncertainty, mostly from translation.</p><p><b>Texts.</b> Lyrics and translations are included only where rights allow (78 songs in full, 23 original-language only). For all other songs the package ships hashes and pinned source revisions; <code>code/rehydrate.py</code> re-fetches the texts from Wikipedia and other public sources and verifies them. A per-song rights audit is included.</p><p><b>Licences.</b> Data, results, figures and documentation: CC BY-SA 4.0 (includes CC BY-SA text adapted from English Wikipedia; see NOTICE.md). Code (<code>code/</code>): MIT.</p><p><b>AI use.</b> The pipeline, analyses, rights audit and documentation were built with AI agents under the direction of the author, atlas-awareness, who is responsible for the content.</p>",
+  "keywords": [
+    "national anthems",
+    "national songs",
+    "lyrics",
+    "computational text analysis",
+    "nationalism",
+    "sentence embeddings",
+    "zero-shot classification",
+    "etymology",
+    "translation",
+    "cultural analytics"
+  ],
+  "notes": "Wikipedia sources are pinned to revisions current at 2026-10-03 02:30 UTC (data/source_revisions.csv). Native-speaker review of the etymology layer is pending; corrections will be released as new versions.",
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "[preprint DOI or URL]",
+      "resource_type": "publication-preprint"
+    }
+  ],
+  "references": [
+    "Gebru, T., et al. (2021). Datasheets for Datasets. Communications of the ACM 64(12), 86-92. https://doi.org/10.1145/3458723"
+  ]
+}
