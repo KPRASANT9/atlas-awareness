@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>World map · Global Anthem Atlas</title>
+  <meta name="description" content="Equal-area world map of anthem themes: Energy × Wisdom, Energy, Wisdom and 12 themes, with uncertainty. Click a country for its full spectrum.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="inner">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Global Anthem Atlas</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="index.html">Story</a>
+        <a href="map.html">World map</a>
+        <a href="explore.html">Energy × Wisdom</a>
+        <a href="method.html">Method</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <h1>The world map</h1>
+    <p class="lede">Each country is coloured by its national anthem's text. Equal Earth projection, so every country appears at its true relative size. Small states are drawn as circles.</p>
+    <p class="notice">Themes, not rankings: colours describe what the words talk about, not the worth of a country or its people. Less certain scores are drawn closer to the neutral "typical" colour.</p>
+
+    <div class="explorer">
+      <section class="panel" aria-labelledby="map-h">
+        <h2 id="map-h" class="sr-only">Interactive map</h2>
+        <div class="controls">
+          <div class="control">
+            <label for="layer">Colour by</label>
+            <select id="layer"></select>
+          </div>
+          <div class="control">
+            <label for="song-mode">Song shown</label>
+            <select id="song-mode">
+              <option value="main">National anthem (main song)</option>
+              <option value="national-song">National song, where one exists</option>
+            </select>
+          </div>
+          <fieldset class="control">
+            <legend>Uncertainty</legend>
+            <div class="opts">
+              <label><input type="radio" name="unc" value="fade" checked> Fade</label>
+              <label><input type="radio" name="unc" value="hatch"> Hatch</label>
+              <label><input type="radio" name="unc" value="none"> Off</label>
+            </div>
+          </fieldset>
+          <div class="control">
+            <label for="find">Find a country or region</label>
+            <input id="find" type="search" list="geo-list" placeholder="Type a name, then Enter" autocomplete="off">
+            <datalist id="geo-list"></datalist>
+          </div>
+        </div>
+        <div id="map-wrap" class="map-wrap">
+          <svg id="map" role="img" aria-labelledby="map-title map-desc">
+            <title id="map-title">World map of anthem themes</title>
+            <desc id="map-desc">An Equal Earth world map in which each country is coloured by the text of its national anthem, using the layer chosen above. No country is highlighted. Use the search box or the table view below the map to open any country's spectrum card with the keyboard.</desc>
+          </svg>
+          <div class="map-tools" role="group" aria-label="Zoom">
+            <button type="button" class="icon-btn" id="zoom-in" aria-label="Zoom in">+</button>
+            <button type="button" class="icon-btn" id="zoom-out" aria-label="Zoom out">−</button>
+            <button type="button" class="icon-btn" id="zoom-reset" aria-label="Reset zoom">⟲</button>
+          </div>
+          <div id="tooltip" class="tooltip" hidden></div>
+        </div>
+        <p id="map-status" class="status" role="status">Loading map…</p>
+        <div class="legend">
+          <svg id="legend-graphic" role="img" aria-label="Colour legend"></svg>
+          <p id="legend-note"></p>
+        </div>
+      </section>
+
+      <aside id="card" class="panel card" aria-live="polite" aria-label="Spectrum card">
+        <div class="card-placeholder">
+          <h2>Choose a country</h2>
+          <p>Hover over the map for a quick summary, or click a country (or search for one) to open its spectrum card: all 12 themes, Energy and Wisdom with 90% ranges, the sub-indices, a data-confidence grade, every song it has in the dataset, and a plain-language reading.</p>
+          <p class="muted">Nothing is selected by default. Scroll or pinch to zoom; drag to pan.</p>
+        </div>
+      </aside>
+    </div>
+
+    <details class="panel table-view">
+      <summary>Table view: all 219 entries (alphabetical)</summary>
+      <div class="table-scroll">
+        <table id="geo-table">
+          <caption class="sr-only">Every geography with its main song and the selected layer's value and 90% range, in alphabetical order.</caption>
+          <thead><tr><th scope="col">Geography</th><th scope="col">Main song</th><th scope="col" id="table-layer-h">Value [90%]</th><th scope="col">Confidence</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </details>
+    <p class="muted" style="font-size:.82rem;margin-top:12px">Boundaries: Natural Earth 1:50m (public domain), which shows de facto lines; no position on any dispute is implied. Not mapped: Western Sahara (disputed; the SADR anthem is listed in the table), the Sovereign Military Order of Malta (no territory) and sub-national songs, which appear in their parent country's card.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <span>Global Anthem Atlas · scores describe song texts, not countries or peoples.</span>
+      <span>atlas-awareness · Built with AI agents; atlas-awareness is responsible. <a href="method.html#ai-use">How AI was used</a></span>
+      <span class="licence-line">Data, scores and readings: <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> · Code: <a href="LICENSE-CODE.txt">MIT</a> · Includes material adapted from English Wikipedia (Wikipedia contributors, CC BY-SA 4.0) · <a href="method.html#credits">Attribution, DOI and preprint</a></span>
+    </div>
+  </footer>
+  <script src="vendor/d3.v7.9.0.min.js"></script>
+  <script src="vendor/topojson-client.v3.1.0.min.js"></script>
+  <script type="module" src="assets/map.js"></script>
+</body>
+</html>
