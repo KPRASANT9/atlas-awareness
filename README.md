@@ -59,7 +59,9 @@ The script joins each geography to Natural Earth by ADM0_A3 code, attaches the p
 
 ## Deploy to GitHub Pages
 
-Site files are already at the repository root. On GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch**. Branch `main`, folder `/ (root)`. Keep `.nojekyll` so GitHub serves every file untouched. The site is at `https://<user>.github.io/<repo>/`. All links are relative.
+Site files are already at the repository root. On GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions** (workflow `.github/workflows/pages.yml`) or **Deploy from a branch** (`master` or `main`, folder `/ (root)`). Keep `.nojekyll` so GitHub serves every file untouched. Intended URL: `https://kprasant9.github.io/atlas-awareness/`. All links are relative.
+
+A `.zenodo.json` and root `CITATION.cff` are in the tree so that enabling this repository under [Zenodo’s GitHub tab](https://zenodo.org/account/settings/github/) and cutting a tagged GitHub release (`v1.0.0`) archives the public package and mints a DOI. The DOI is then written back into `CITATION.cff`, this README, the preprint, and `method.html` credits. Withheld lyrics are not in this repository.
 
 ## Deploy to Netlify
 
