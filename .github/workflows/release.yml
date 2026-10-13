@@ -1,0 +1,35 @@
+name: Create v1.0.0 release
+on:
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create GitHub release v1.0.0 if missing
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          if gh release view v1.0.0 >/dev/null 2>&1; then
+            echo "v1.0.0 already exists"
+            exit 0
+          fi
+          gh release create v1.0.0 \
+            --target "${GITHUB_SHA}" \
+            --title "v1.0.0 — Global Anthem Atlas" \
+            --notes "First public release of the Global Anthem Atlas.
+
+Author: atlas-awareness (name and affiliation).
+Built with AI agents; atlas-awareness is responsible for the content.
+
+This archive is the public package only: interactive site, scores, pipeline, and documentation.
+It does not include withheld lyrics, agent translations, or the raw in-copyright lyric table.
+
+Licences: data CC BY-SA 4.0; code MIT.
+
+Zenodo mints a DOI from this GitHub release after the repository is enabled at https://zenodo.org/account/settings/github/"
