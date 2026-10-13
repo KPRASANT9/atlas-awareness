@@ -1,0 +1,12 @@
+withheld/
+**/withheld/
+agent_translations
+agent_translations.json
+**/dataset.csv
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+internal/release/withheld/
+internal/release/build/sources/cache/
+internal/anthem-atlas/data/dataset.csv

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Method · Global Anthem Atlas</title>
+  <meta name="description" content="How the Global Anthem Atlas scores anthems: the Energy and Wisdom axes, the full formula, the etymology layer, uncertainty, limitations, the bias audit and an AI-use disclosure.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="inner">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Global Anthem Atlas</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="index.html">Story</a>
+        <a href="map.html">World map</a>
+        <a href="explore.html">Energy × Wisdom</a>
+        <a href="method.html">Method</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="prose">
+    <h1>Method</h1>
+    <p class="lede">How a song's words become a theme profile, two axes and a range of uncertainty, and where the method is weakest.</p>
+
+    <nav class="method-toc" aria-label="On this page">
+      <ol>
+        <li><a href="#data">Data and sources</a></li>
+        <li><a href="#themes">Twelve themes</a></li>
+        <li><a href="#axes">The two axes</a></li>
+        <li><a href="#formula">The formula, end to end</a></li>
+        <li><a href="#etymology">Etymology layer</a></li>
+        <li><a href="#uncertainty">Uncertainty and confidence</a></li>
+        <li><a href="#limitations">Limitations</a></li>
+        <li><a href="#bias">Bias audit</a></li>
+        <li><a href="#ai-use">AI-use disclosure</a></li>
+        <li><a href="#credits">Licences, attribution and how to cite</a></li>
+      </ol>
+    </nav>
+
+    <section class="read-first" aria-labelledby="rf">
+      <h2 id="rf">Themes, not rankings</h2>
+      <p>Energy and Wisdom are theme profiles of song texts. They do not measure the depth of a song, its spiritual wisdom, or the conduct of any state or people. Levels 1–5 are quintiles, so each holds about 20% of songs by construction: they show relative position, never absolute amounts.</p>
+    </section>
+
+    <h2 id="data">1. Data and sources</h2>
+    <ul>
+      <li><strong>242 analysed texts</strong>: 201 national anthems (193 of the 195 UN members and observers, plus partially recognised states) and 41 national songs, second and royal anthems, sub-national songs and historic versions. Together they cover 212 places with scored lyrics, out of 219 listed.</li>
+      <li><strong>Sources.</strong> 240 of 242 English texts come from the Lyrics sections of English Wikipedia (CC BY-SA); some are public-domain texts (for example Sri Aurobindo's 1909 <em>Vande Mataram</em> translation and Tagore's 1919 <em>Morning Song of India</em>). Two songs with no public translation were translated by the analyst and are flagged.</li>
+      <li><strong>Not scored:</strong> anthems without official lyrics (Spain, Bosnia and Herzegovina, Kosovo, the EU, the Basque Country) and songs without a free English translation (Scotland, Odisha).</li>
+      <li>Long texts are analysed on their first ~300 words, about the length usually printed and sung.</li>
+      <li><strong>This site shows no lyric text.</strong> Rights to some translations are still being cleared, so each song card shows only scores, a short generated reading and a link to the source.</li>
+    </ul>
+
+    <h2 id="themes">2. Twelve themes</h2>
+    <p>Each song is scored on 11 themes (nature, land as mother, unity, freedom, martial, divine, monarch, justice and peace, history, future, and truth and virtue) plus an Awakening theme (waking, hailing and song). Each theme is read four ways and combined:</p>
+    <ol>
+      <li><strong>Lexicon:</strong> the rate of theme words per 100 words, square-rooted and standardised.</li>
+      <li><strong>Anchor similarity:</strong> 2-line windows are embedded (all-mpnet-base-v2) and compared with three anchor sentences per theme; centred per song to remove the shared "sounds like an anthem" component.</li>
+      <li><strong>Zero-shot NLI:</strong> a DeBERTa-v3 model tests whether each stanza entails "This text is about {theme}".</li>
+      <li><strong>Root sense:</strong> for 159 songs, the original-language roots of key terms (section 5).</li>
+    </ol>
+    <p>On 30 songs hand-labelled before any scores were seen, the combined theme scores reach a macro AUC of 0.93.</p>
+
+    <h2 id="axes">3. The two axes</h2>
+    <h3>Energy: how strongly the text rouses its listeners</h3>
+    <p>An equal blend of two nearly independent components (\(\rho = 0.14\)):</p>
+    <ul>
+      <li><strong>Mobilisation</strong>: <em>Struggle</em> (martial imagery, freedom through struggle) and <em>Drive</em> (imperatives such as "arise" and "let us", exclamations, march tempo).</li>
+      <li><strong>Awakening</strong>: <em>Invocation</em> (rising, dawn, hailing and acclamation, collective song; weight ⅔) and <em>Build</em> (refrain repetition and a final acclamation; weight ⅓). It is controlled for divine and monarch content, so it is not a proxy for religious or royal songs. It agrees with 50 blind hand labels at AUC 0.87.</li>
+    </ul>
+    <h3>Wisdom: reflective-universal orientation</h3>
+    <p>How far the text looks beyond the nation to ethics, truth and the future: one factor of justice and peace (loading 0.49), truth and virtue (0.54) and future (0.42). Reliability is modest (α = 0.47).</p>
+    <p><strong>Deliberately on neither axis:</strong> nature, land as mother, divine, monarch, unity and history. Devotion, the sacred land and reverence are not counted as "Wisdom"; they appear in the theme bars of every card.</p>
+    <p><strong>Confound control.</strong> Every axis item is regressed on lyric length, words per line, archaic diction and text source, and replaced by its standardised residual. Afterwards those variables explain 0.0% of either axis. Era is left in on purpose: wars and coronations shape lyrics.</p>
+
+    <h2 id="formula">4. The formula, end to end</h2>
+    <p>Notation: \(s\) is a song, \(t\) a theme, \(\operatorname{std}(\cdot)\) divides by the standard deviation over the 242 texts, and \(\operatorname{clip}(u)=\max(-3,\min(3,u))\).</p>
+    <h3>Step 1–2: theme scores with an etymology blend</h3>
+    <div class="formula">$$\theta_{s,t}=(1-\alpha_s)\cdot\tfrac13\big(z^{\text{lex}}_{s,t}+z^{\text{anc}}_{s,t}+z^{\text{nli}}_{s,t}\big)+\alpha_s\, z^{\text{ety}}_{s,t}$$</div>
+    <div class="formula">$$z^{\text{lex}}_{s,t}=\operatorname{clip}\!\Big(\tfrac{L_{s,t}-\mu^{\text{lex}}_t}{\sigma^{\text{lex}}_t}\Big),\quad L_{s,t}=\sqrt{100\,c_{s,t}/n_s}$$</div>
+    <p>where \(c_{s,t}\) counts theme-lexicon matches and \(n_s\) is the number of words. The etymology weight grows with confidence and with translation drift:</p>
+    <div class="formula">$$d_i = 1-\cos\big(\mathbf v_i^{\text{root}},\mathbf v_i^{\text{EN}}\big),\qquad \delta_s=\frac{\sum_i\omega_i d_i}{\sum_i\omega_i},\qquad \alpha_s=\kappa_s\,(0.25+0.25\,\delta_s)$$</div>
+    <div class="formula">$$\kappa_s=\begin{cases}\bar c_s\cdot\min(1,N_s/4) & \text{curated roots}\\ 0.5\cdot\min(1,H_s/6) & \text{light root hits } (H_s\ge3)\\ 0 & \text{none, or English is the original}\end{cases}$$</div>
+    <h3>Step 3–4: rhetoric items and confound residualisation</h3>
+    <div class="formula">$$I_s=\operatorname{clip}\!\Big(\operatorname{std}\sqrt{\tfrac{\#\text{imperative lines}+\#\text{“let us”}}{\#\text{lines}}}\Big),\qquad X_s=\operatorname{clip}\!\Big(\operatorname{std}\sqrt{\min\!\big(\tfrac{\#\,!}{\#\text{lines}},1.5\big)}\Big),\qquad M_s\in\{-1,0,+1\}$$</div>
+    <div class="formula">$$x_{s,j}=\beta_{0j}+\boldsymbol\beta_j^{\top}\mathbf n_s+r_{s,j},\qquad \mathbf n_s=\big(\ln n_s,\ \sqrt{\text{archaic}/100\text{w}},\ \text{words/line},\ \mathbb 1[\text{curated}]\big),\qquad \tilde z_{s,j}=\frac{r_{s,j}}{\operatorname{sd}(r_{\cdot j})}$$</div>
+    <p>The Awakening items add the divine and monarch themes to \(\mathbf n_s\).</p>
+    <h3>Step 5: the factors</h3>
+    <div class="formula">$$S_s=\tfrac12(\tilde z_{s,\text{martial}}+\tilde z_{s,\text{freedom}}),\qquad D_s=\tfrac13(\tilde z_{s,I}+\tilde z_{s,X}+\tilde z_{s,M}),\qquad \text{Mob}_s=\operatorname{std}\big(\tfrac12(S_s+D_s)\big)$$</div>
+    <div class="formula">$$\text{Inv}_s=\tilde z_{s,\text{awk}},\qquad \text{Build}_s=\tfrac12\big(\tilde z_{s,P}+\tilde z_{s,F}\big),\qquad \text{Awk}_s=\operatorname{std}\big(\tfrac23\,\text{Inv}_s+\tfrac13\,\text{Build}_s\big)$$</div>
+    <div class="formula">$$E_s=\operatorname{std}\big(w\,\text{Mob}_s+(1-w)\,\text{Awk}_s\big),\qquad w=0.5$$</div>
+    <div class="formula">$$W_s=\frac{1}{\operatorname{sd}(\cdot)}\cdot\frac{\sum_j\lambda_j\tilde z_{s,j}}{\sum_j\lambda_j},\qquad \boldsymbol\lambda=(0.485,\ 0.536,\ 0.422)_{\text{justice, virtue, future}}$$</div>
+    <h3>Step 6: levels (reference only)</h3>
+    <div class="formula">$$\ell(E_s)=1+\#\{k\in\{1,..,4\}: E_s\ge q^E_k\},\qquad q^E=(-0.878,\,-0.297,\,0.236,\,0.852),\quad q^W=(-0.869,\,-0.283,\,0.238,\,0.794)$$</div>
+    <p>Results are stable for Mobilisation weights \(w\) from 0.4 to 0.6 (\(\rho \ge 0.98\) with the default). The two axes correlate at \(\rho=-0.10\).</p>
+
+    <h2 id="etymology">5. Etymology layer: reading the roots, not only the translation</h2>
+    <p>English translations flatten roots. <em>Vande</em> comes from Sanskrit √vand, "to bow down, revere", but is rendered "praise". <em>Adhināyaka</em> is "one who leads over", a guide, but is rendered "ruler". Indonesian and Malay <em>tumpah darah</em>, literally "spilt blood", is an idiom for one's birthplace.</p>
+    <ul>
+      <li><strong>Curated core:</strong> 295 key terms in 48 languages for 63 songs, each with its root, literal sense, semantic fields and the English rendering actually used. Plus 59 curated awakening terms (for example <em>jāge</em>, √jāgṛ "be awake"; <em>jaya</em>, used as "hail").</li>
+      <li><strong>Light layer:</strong> a cross-lingual root lexicon of 140 stem groups for 96 more songs.</li>
+      <li><strong>None:</strong> 83 songs, mostly English originals with no translation to drift from.</li>
+      <li><strong>Verification:</strong> every curated term was found in the original text; Wiktionary confirms 87% of checkable roots. Roots were not reviewed by native-speaker philologists.</li>
+      <li><strong>Effect:</strong> ranks barely change (\(\rho \approx 0.99\)), but scores become more robust to the choice of translator: within one level on both axes under a second translation, 76% of songs without roots and 82% with them.</li>
+    </ul>
+
+    <h2 id="uncertainty">6. Uncertainty and data confidence</h2>
+    <p>Every Energy and Wisdom value carries a 90% interval built from three sources: 400 bootstrap refits of the whole pipeline, the Mobilisation weight drawn from 0.3–0.7, and translation noise estimated from 163 independent second translations. Theme intervals combine translation noise with disagreement among the scoring methods.</p>
+    <ul>
+      <li>The median 90% interval spans <strong>1.8 SD for Energy</strong> and <strong>1.4 SD for Wisdom</strong>, about three of the five levels. Translation is the main reason.</li>
+      <li>English originals have no translation noise (median width 0.8 SD for Energy), so their colours look more certain. That reflects evidence, not a judgement.</li>
+    </ul>
+    <table>
+      <caption class="sr-only">Data-confidence penalties</caption>
+      <thead><tr><th scope="col">Penalty</th><th scope="col">Points</th></tr></thead>
+      <tbody>
+        <tr><td>Short text (under 60 words)</td><td>1</td></tr>
+        <tr><td>Translated, with no etymology check</td><td>1</td></tr>
+        <tr><td>No independent second translation to compare</td><td>0.5</td></tr>
+        <tr><td>Unstable across model refits and single-method rescoring (top 20%)</td><td>1</td></tr>
+        <tr><td>Lyric-status caveat (e.g. anthem not in use, shared text, analyst's own translation)</td><td>1</td></tr>
+      </tbody>
+    </table>
+    <p><strong>High</strong> = 0–0.5 points, <strong>Medium</strong> = 1–1.5, <strong>Low</strong> = 2 or more. Of the 212 main songs, 133 are High, 57 Medium and 22 Low. On the map, "Fade" pulls a colour toward the neutral "typical" colour as its interval widens; "Hatch" marks the 20% widest.</p>
+
+    <h2 id="limitations">7. Limitations (please read before quoting a number)</h2>
+    <ul>
+      <li><strong>Translation loss.</strong> Everything is scored in English. Idioms and punctuation habits vary by translator; a second translation moves individual songs by up to about one level.</li>
+      <li><strong>Music is not modelled.</strong> Tempo, melody and performance enter only as a sparse march/slow flag for 24 songs plus refrain and acclamation structure visible in the lyric.</li>
+      <li><strong>Meaning carried by structure is under-read.</strong> Jana Gana Mana expresses unity by naming regions, which keyword and model scoring miss.</li>
+      <li><strong>Stanza selection and era.</strong> Wikipedia often prints all stanzas, while countries sing one or two. Old anthems reflect the wars and monarchies of their time.</li>
+      <li><strong>Colonial and secondary sources.</strong> Many English versions were made by outsiders or anonymous editors. Some anthems are no longer used in practice (Afghanistan) or are in transition (Syria).</li>
+      <li><strong>Etymology is one curated reading</strong>, capped at about a quarter of each theme score. Root sense is not usage.</li>
+      <li><strong>The national-song list is curated and partial.</strong> Modern copyrighted songs could not be included.</li>
+      <li><strong>Archetypes are soft.</strong> Cluster separation is weak (silhouette ≈ 0.06); treat families as neighbourhoods.</li>
+    </ul>
+
+    <h2 id="bias">8. Bias audit</h2>
+    <ul>
+      <li><strong>Language family is associated with Energy, not Wisdom.</strong> Family explains 13% of Energy beyond sub-region (p = 0.001). An independent second translation reproduces the ordering, so it is not one translator's quirk. The likeliest reason is history (many Romance and Eastern European anthems are revolutionary marches; many Germanic, Bantu and Pacific anthems are hymns), but a register effect cannot be ruled out.</li>
+      <li><strong>Resource bias.</strong> 43 songs were translated with no etymology check, mostly East and South-east Asian, Austronesian, Afro-Asiatic, Pacific, Central Asian and Himalayan texts. They have the widest Wisdom intervals and 13 of the 22 Low grades. That is a gap in resources, not a property of those songs.</li>
+      <li><strong>Colonial-era and archaic translations.</strong> Archaic diction is removed from the axes, but the theme spectra are left uncorrected: archaic texts carry more divine, monarch and Awakening content, partly genuinely and partly through register.</li>
+      <li><strong>Fixed:</strong> 14 anthems whose English text is the original had been treated as translations; the confidence grade had double-counted translation; and source language was unrecorded for most songs. All three are corrected in the data shown here.</li>
+      <li><strong>Not fixed:</strong> mixed-origin texts (Cameroon, South Africa), the analyst's own translations (Finland, Indonesia), and the lack of native-speaker review.</li>
+      <li><strong>Presentation choices:</strong> no country is highlighted by default, lists are alphabetical, the colour scheme avoids red-versus-green and is readable with common colour-vision deficiencies, and every card ends with a reminder that these are themes, not rankings.</li>
+    </ul>
+
+    <section id="ai-use" class="disclosure" aria-labelledby="ai-h">
+      <h2 id="ai-h" style="margin-top:0">9. AI-use disclosure</h2>
+      <p><strong>This atlas was built with AI agents; the human author atlas-awareness is responsible for it.</strong></p>
+      <p>AI agents assembled the dataset from public sources, wrote and ran the scoring pipeline (embedding and natural-language-inference models included), curated the etymology terms, drafted the reports and the plain-language readings, and built this website. The human author, atlas-awareness, set the questions, approved design decisions such as the redefinition of Energy, and is accountable for the content, the choices and any errors.</p>
+      <p>Machine-generated readings can be wrong. Corrections are welcome, especially from native speakers of the anthems' languages.</p>
+    </section>
+
+    <h2 id="credits">10. Licences, attribution and how to cite</h2>
+    <h3>Licences</h3>
+    <ul>
+      <li><strong>Data, scores and readings</strong> (everything in <code>data/</code> and the text of these pages): <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">Creative Commons Attribution-ShareAlike 4.0 International</a> (CC BY-SA 4.0). <a href="LICENSE-DATA.txt">Full licence text</a>. You may share and adapt them, with attribution, under the same licence.</li>
+      <li><strong>Code</strong> (the site's own scripts and the analysis pipeline): <a href="LICENSE-CODE.txt">MIT licence</a>.</li>
+      <li><strong>Lyrics are not displayed or redistributed by this site.</strong> Each song card links to its source. Many lyrics and translations are under copyright or have unclear status; the dataset release includes texts only where rights allow.</li>
+    </ul>
+    <h3>Attribution</h3>
+    <ul>
+      <li><strong>English Wikipedia</strong> (CC BY-SA 4.0; authors: Wikipedia contributors, listed on each article's history page). The scores are derived from English translations in the Lyrics sections of song articles, pinned to revisions current at 2026-10-03; each song card links to the exact revision. Titles, lyricists, composers and adoption years come from "List of national anthems", <a href="https://en.wikipedia.org/w/index.php?oldid=1377716205">revision 1377716205</a>. Changes made: wiki markup, references and line-repeat marks removed and texts truncated to about 300 words for analysis; no wording was changed.</li>
+      <li><strong>Wikisource:</strong> Tagore, <em>The Morning Song of India</em> (1919; public domain).</li>
+      <li><strong>Second-translation check:</strong> texts from github.com/reys1226/CECS450-Project1 (originating from nationalanthems.info) were used only to measure translation sensitivity; no text is included.</li>
+      <li><strong>Wiktionary</strong> was consulted to check etymology lemmas; no Wiktionary text is included.</li>
+      <li><strong>Boundaries:</strong> <a href="https://www.naturalearthdata.com/">Natural Earth</a> 1:50m admin-0 countries (public domain), simplified. De facto lines; no position on any dispute is implied.</li>
+      <li><strong>Models used in the analysis:</strong> sentence-transformers all-mpnet-base-v2, paraphrase-multilingual-mpnet-base-v2 and LaBSE (Apache-2.0); MoritzLaurer/deberta-v3-base-zeroshot-v2.0 (MIT).</li>
+      <li><strong>Software bundled with this site:</strong> D3 v7.9.0 (ISC), topojson-client v3.1.0 (ISC), KaTeX v0.16.11 (MIT). Licences are in <code>vendor/</code>.</li>
+      <li><strong>Author:</strong> atlas-awareness. Built with AI agents; atlas-awareness is responsible for the content.</li>
+    </ul>
+    <h3>Dataset, preprint and citation</h3>
+    <ul>
+      <li><strong>Dataset and code (Zenodo):</strong> <a href="https://doi.org/10.5281/zenodo.ZENODO_RECORD_ID" data-placeholder="zenodo-doi">doi:10.5281/zenodo.ZENODO_RECORD_ID</a> <span class="muted">(placeholder: the DOI is assigned on publication)</span></li>
+      <li><strong>Preprint:</strong> <a href="PREPRINT_URL_PLACEHOLDER" data-placeholder="preprint">Global Anthem Atlas preprint</a> <span class="muted">(placeholder: link added on posting)</span></li>
+      <li><strong>Suggested citation:</strong> atlas-awareness (2026). <em>Global Anthem Atlas: themes, Energy and Wisdom indices for the lyrics of national anthems and national songs</em> (v1.0.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.ZENODO_RECORD_ID. Licensed under CC BY-SA 4.0. Affiliation: atlas-awareness.</li>
+    </ul>
+  </main>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <span>Global Anthem Atlas · scores describe song texts, not countries or peoples.</span>
+      <span>atlas-awareness · Built with AI agents; atlas-awareness is responsible.</span>
+      <span class="licence-line">Data, scores and readings: <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> · Code: <a href="LICENSE-CODE.txt">MIT</a> · Includes material adapted from English Wikipedia (Wikipedia contributors, CC BY-SA 4.0) · <a href="method.html#credits">Attribution, DOI and preprint</a></span>
+    </div>
+  </footer>
+  <script src="vendor/katex/katex.min.js"></script>
+  <script>if(!window.katex)document.write('<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"><\/script>')</script>
+  <script src="vendor/katex/auto-render.min.js"></script>
+  <script src="assets/method.js"></script>
+</body>
+</html>

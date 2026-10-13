@@ -1,0 +1,29 @@
+{
+ "n_pairs": 20,
+ "difference": "national song minus anthem (standardised scores)",
+ "energy_v1": {
+  "song_lower": 11,
+  "median": -0.188,
+  "wilcoxon_p": 0.546
+ },
+ "energy": {
+  "song_lower": 16,
+  "median": -0.708,
+  "wilcoxon_p": 0.03
+ },
+ "mobilisation": {
+  "song_lower": 11,
+  "median": -0.188,
+  "wilcoxon_p": 0.522
+ },
+ "awakening": {
+  "song_lower": 16,
+  "median": -0.813,
+  "wilcoxon_p": 0.033
+ },
+ "wisdom": {
+  "song_lower": 10,
+  "median": 0.073,
+  "wilcoxon_p": 0.841
+ }
+}

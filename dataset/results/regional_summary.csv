@@ -1,0 +1,6 @@
+macro_region,n,energy_mean,wisdom_mean,energy_level_median,wisdom_level_median
+Africa,56,-0.003,0.034,3.0,3.0
+Americas,35,0.084,0.092,3.0,3.0
+Asia,52,0.015,-0.046,3.0,3.0
+Europe,44,0.062,-0.051,3.0,2.0
+Oceania,14,-0.238,-0.263,3.0,2.5

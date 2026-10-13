@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Energy × Wisdom · Global Anthem Atlas</title>
+  <meta name="description" content="Every anthem and national song placed on two nearly independent axes, Energy and Wisdom, over a density heat map. Search to find a song.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="inner">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Global Anthem Atlas</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="index.html">Story</a>
+        <a href="map.html">World map</a>
+        <a href="explore.html">Energy × Wisdom</a>
+        <a href="method.html">Method</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <h1>The Energy × Wisdom space</h1>
+    <p class="lede">Every song on two nearly independent axes (correlation −0.10). Grey shading shows where songs are most common: a broad ceremonial middle, no tribes. Dashed lines mark the atlas's five levels on each axis.</p>
+    <p class="notice">Themes, not rankings. Nothing is labelled or highlighted until you search or click. Each point's 90% range is wide: turn on the ranges to see how far a single song could move.</p>
+
+    <div class="explorer">
+      <section class="panel" aria-labelledby="sc-h">
+        <h2 id="sc-h" class="sr-only">Scatter and heat view</h2>
+        <div class="controls">
+          <div class="control">
+            <label for="search">Search a country or song (optional)</label>
+            <div style="display:flex;gap:6px">
+              <input id="search" type="search" placeholder="e.g. India, Kimigayo" autocomplete="off" aria-describedby="scatter-count">
+              <button type="button" class="icon-btn" id="clear-search" aria-label="Clear search">×</button>
+            </div>
+          </div>
+          <fieldset class="control">
+            <legend>Songs</legend>
+            <div class="opts">
+              <label><input type="radio" name="set" value="main" checked> Main song per place (212)</label>
+              <label><input type="radio" name="set" value="all"> All songs (242)</label>
+            </div>
+          </fieldset>
+          <div class="control">
+            <span style="font-weight:600;color:var(--ink)">Uncertainty</span>
+            <label style="font-weight:400"><input type="checkbox" id="show-intervals"> Show 90% ranges</label>
+          </div>
+        </div>
+        <div id="scatter-wrap" class="scatter-wrap">
+          <svg id="scatter" role="img" aria-labelledby="sc-title sc-desc">
+            <title id="sc-title">Energy against Wisdom for every song</title>
+            <desc id="sc-desc">A scatter plot. The horizontal axis is Energy from calm to rousing, the vertical axis is Wisdom. Points are coloured with the same colour field as the map. A grey density heat map shows one broad central mass. The four corners are labelled contemplative and ethical (top left), rousing idealism (top right), rooted and serene (bottom left) and martial resolve (bottom right). Use the search box to find and open individual songs with the keyboard.</desc>
+          </svg>
+          <div id="tooltip" class="tooltip" hidden></div>
+        </div>
+        <p id="scatter-status" class="status" role="status">Loading…</p>
+        <p id="scatter-count" class="status" aria-live="polite"></p>
+        <ul id="results" class="results" aria-label="Search results"></ul>
+      </section>
+
+      <aside id="card" class="panel card" aria-live="polite" aria-label="Spectrum card">
+        <div class="card-placeholder">
+          <h2>Choose a song</h2>
+          <p>Click a point, or search and pick a result, to open that place's spectrum card with this song selected.</p>
+          <p class="muted">The four corners give the axes their meaning. Corner names describe the words, never the people.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <span>Global Anthem Atlas · scores describe song texts, not countries or peoples.</span>
+      <span>atlas-awareness · Built with AI agents; atlas-awareness is responsible. <a href="method.html#ai-use">How AI was used</a></span>
+      <span class="licence-line">Data, scores and readings: <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> · Code: <a href="LICENSE-CODE.txt">MIT</a> · Includes material adapted from English Wikipedia (Wikipedia contributors, CC BY-SA 4.0) · <a href="method.html#credits">Attribution, DOI and preprint</a></span>
+    </div>
+  </footer>
+  <script src="vendor/d3.v7.9.0.min.js"></script>
+  <script>if(!window.d3)document.write('<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"><\/script>')</script>
+  <script type="module" src="assets/explore.js"></script>
+</body>
+</html>

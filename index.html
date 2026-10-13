@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Global Anthem Atlas: how the world sings about itself</title>
+  <meta name="description" content="An open, interactive atlas of the themes in 242 national anthems and national songs from 212 places: Energy, Wisdom and 12 themes, each with uncertainty. Themes, not rankings.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="inner">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span>Global Anthem Atlas</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="index.html">Story</a>
+        <a href="map.html">World map</a>
+        <a href="explore.html">Energy × Wisdom</a>
+        <a href="method.html">Method</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">An open atlas of national anthems and songs</p>
+        <h1>How the world sings about itself</h1>
+        <p class="lede">It started with two Indian songs, a <em>Geyam</em> and a <em>Geetham</em>. It became a map of what 242 anthems and national songs from 212 places talk about, and how strongly they rouse their listeners.</p>
+        <div class="cta">
+          <a class="btn primary" href="map.html">Explore the world map</a>
+          <a class="btn secondary" href="explore.html">See the Energy × Wisdom space</a>
+        </div>
+        <div class="stats" aria-label="Dataset size">
+          <div class="stat"><b>242</b><span>songs scored</span></div>
+          <div class="stat"><b>212</b><span>places with scored lyrics</span></div>
+          <div class="stat"><b>12</b><span>themes per song</span></div>
+          <div class="stat"><b>90%</b><span>ranges on every score</span></div>
+        </div>
+      </div>
+      <figure class="hero-art">
+        <svg id="hero-field" role="img" aria-labelledby="hero-field-title hero-field-desc">
+          <title id="hero-field-title">How to read the colours</title>
+          <desc id="hero-field-desc">A square colour field. Left to right, Energy rises from calm to rousing; bottom to top, Wisdom rises. The corners are light sand (calm, low Wisdom), orange (rousing, low Wisdom), blue (calm, high Wisdom) and deep purple (both high), with a neutral grey-beige centre for songs typical on both. Each dot is one song; the grey shading shows where songs are most common, in a broad middle with no tight clusters.</desc>
+        </svg>
+        <figcaption class="muted" style="font-size:.85rem;padding:6px 4px 0">Each dot is one song's text. The colours are the ones used on the map. No country is labelled: the point is the spread, not who is where.</figcaption>
+      </figure>
+    </section>
+
+    <section class="read-first" aria-labelledby="how-to-read">
+      <h2 id="how-to-read">How to read this: themes, not rankings</h2>
+      <p><strong>Energy</strong> and <strong>Wisdom</strong> describe what the <em>words</em> of a song talk about and how hard they push. They are not scores of countries, cultures or peoples. A calm anthem is not better, and a fiery one is not worse.</p>
+      <p>Many anthems were written during a war, a revolution or a coronation, and their words carry that moment. Everything is read from English translations (with original-language roots for 159 songs), and translation is the biggest source of uncertainty: a typical 90% range spans about three of the atlas's five levels. Read every number with its range.</p>
+      <p>No country is highlighted anywhere on this site unless you choose it. Lists are alphabetical, never sorted by score.</p>
+    </section>
+
+    <section class="prose" aria-labelledby="story">
+      <h2 id="story">The story: Geyam and Geetham</h2>
+      <p>India has two national songs with equal honour. The <em>Jaateeya Geetham</em>, the national anthem, is Tagore's <em>Jana Gana Mana</em>. The <em>Jaateeya Geyam</em>, the national song, is Bankim Chandra Chatterjee's <em>Vande Mataram</em>. They are often described as two life philosophies: the Geyam as heart, devotion and ecology; the Geetham as conscience, unity and destiny.</p>
+      <p>The atlas asked whether that difference shows up when the two songs are placed among all the world's anthems, read the same way, theme by theme.</p>
+    </section>
+    <div class="story">
+      <article class="song" aria-labelledby="vm">
+        <p class="tag">Jaateeya Geyam · national song</p>
+        <h3 id="vm">Vande Mataram</h3>
+        <p>Its words dwell on landscape and on the land as mother, among the strongest in the world on both. The root of <em>vande</em>, Sanskrit √vand, means "to bow, revere", which the English "praise" loses. Its nearest neighbour worldwide is Bangladesh's <em>Amar Shonar Bangla</em>, another Bengal-renaissance song of mother-earth devotion.</p>
+        <p class="muted">Family: Garden &amp; Mother. Energy −0.12 [−1.05, +0.86] (typical); Wisdom −0.93 [−1.75, −0.14]. Its low Wisdom is not a judgement: devotion and the sacred land are deliberately on neither axis.</p>
+      </article>
+      <article class="song" aria-labelledby="jgm">
+        <p class="tag">Jaateeya Geetham · national anthem</p>
+        <h3 id="jgm">Jana Gana Mana</h3>
+        <p>A hymn of address to a guiding presence, "dispenser of India's destiny". It rouses by waking and hailing rather than marching: <em>jāge</em> ("it wakes"), <em>gāhe tava jaya-gāthā</em> ("sings thy victory song") and the closing <em>jaya he, jaya he</em>. It has one of the highest Awakening scores in the dataset.</p>
+        <p class="muted">Family: Crown &amp; Covenant. Energy +1.25 [−0.04, +2.44] (leans rousing); Wisdom +1.44 [+0.70, +2.11] (more truth, virtue and future language than typical).</p>
+      </article>
+    </div>
+    <p class="prose">In the combined space the two are about as related as two randomly chosen songs. They are complementary, not overlapping: one loves a <em>place</em>, the other addresses a <em>destiny</em>. <a href="map.html#geo=India">Open India's full spectrum</a> to see all five Indian national-level songs side by side.</p>
+
+    <section aria-labelledby="findings">
+      <h2 id="findings">Key findings</h2>
+      <ul class="findings">
+        <li><strong>Where you are shapes which themes you sing, not how hard</strong>Sub-region explains 16–26% of each theme, but none of Energy once group count is adjusted for. Wisdom has a modest sub-regional geography (13.5%).</li>
+        <li><strong>Five loose families, not tribes</strong>Call to Arms, Heritage Homeland, Unity &amp; Justice, Garden &amp; Mother and Crown &amp; Covenant overlap heavily. Songs form a continuum with a broad ceremonial middle and four corners.</li>
+        <li><strong>Two ways to rouse</strong>Energy counts calls to struggle and action (Mobilisation) and waking, hailing and song (Awakening) equally. A hymn that hails can be as rousing as a march.</li>
+        <li><strong>National songs are gentler than anthems</strong>In 16 of 20 countries with both, the national song has lower Energy (p = 0.03). The gap is in Awakening: anthems hail and acclaim more; they do not necessarily march harder.</li>
+        <li><strong>Era leaves a fingerprint</strong>Anthems adopted before 1946 carry far more martial content than those adopted 1946–1989; monarch content falls steadily over time.</li>
+        <li><strong>Translation is the biggest uncertainty</strong>An independent second translation keeps 82% of songs within one level on both axes, but the median 90% range still spans 1.8 SD of Energy. Original-language roots narrow it.</li>
+      </ul>
+    </section>
+
+    <section class="prose" aria-labelledby="what-here">
+      <h2 id="what-here">What you can do here</h2>
+      <ul>
+        <li><a href="map.html">World map</a>: an equal-area map coloured by Energy × Wisdom, Energy, Wisdom or any of the 12 themes, with uncertainty shown. Hover for a summary; click for a country's full spectrum card.</li>
+        <li><a href="explore.html">Energy × Wisdom</a>: every song in the two-axis space over a density heat map, with optional search.</li>
+        <li><a href="method.html">Method</a>: the axes, the full formula, the etymology layer, limitations, the bias audit and how AI was used.</li>
+      </ul>
+      <p class="notice">Lyrics are not shown on this site while rights are being cleared. Each song card links to its source.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <span>Global Anthem Atlas · scores describe song texts, not countries or peoples.</span>
+      <span>atlas-awareness · Built with AI agents; atlas-awareness is responsible. <a href="method.html#ai-use">How AI was used</a></span>
+      <span class="licence-line">Data, scores and readings: <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> · Code: <a href="LICENSE-CODE.txt">MIT</a> · Includes material adapted from English Wikipedia (Wikipedia contributors, CC BY-SA 4.0) · <a href="method.html#credits">Attribution, DOI and preprint</a></span>
+    </div>
+  </footer>
+  <script src="vendor/d3.v7.9.0.min.js"></script>
+  <script>if(!window.d3)document.write('<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"><\/script>')</script>
+  <script type="module" src="assets/home.js"></script>
+</body>
+</html>
