@@ -1,5 +1,5 @@
 import {
-  loadAtlas, LAYERS, themeLayers, songColor, intervalWidth, layerTriple, fmt, fmtTriple, escapeHtml,
+  loadAtlas, loadWorldTopo, LAYERS, themeLayers, songColor, intervalWidth, layerTriple, fmt, fmtTriple, escapeHtml,
   representativeSong, drawBivariateLegend, drawDivergingLegend, markActiveNav, songTypeLabel,
 } from "./common.js";
 import { renderCard } from "./card.js";
@@ -19,7 +19,7 @@ const tooltip = d3.select("#tooltip");
 const card = document.getElementById("card");
 const placeholder = card.innerHTML;
 
-Promise.all([loadAtlas(), fetch("data/world.topo.json").then((r) => r.json())])
+Promise.all([loadAtlas(), loadWorldTopo()])
   .then(([data, topo]) => init(data, topo))
   .catch((err) => {
     document.getElementById("map-status").textContent = `The map could not load: ${err.message}`;
@@ -110,8 +110,8 @@ function init(data, topo) {
       note.innerHTML = `<strong>${escapeHtml(label)}</strong>: orange = more than the average song, purple = less. Units are standard deviations.`;
     }
     const unc = {
-      fade: "Less certain scores (wider 90% intervals) are pulled toward the neutral “typical” colour.",
-      hatch: `Hatched = the 20% of countries with the widest 90% intervals (width ≥ ${thr ? thr.toFixed(1) : "?"} SD).`,
+      fade: "Less certain scores (wider 90% intervals) are pulled toward the neutral \u201ctypical\u201d colour.",
+      hatch: `Hatched = the 20% of countries with the widest 90% intervals (width \u2265 ${thr ? thr.toFixed(1) : "?"} SD).`,
       none: "Uncertainty display is off; every score still has a wide 90% range.",
     }[state.uncertainty];
     note.innerHTML += ` ${unc} <span class="legend-key"><span class="sw sw-nodata"></span>no official lyrics / not mapped</span> <span class="legend-key"><span class="sw sw-out"></span>outside the dataset</span>`;
@@ -131,7 +131,7 @@ function init(data, topo) {
       body = `<em>${escapeHtml(s.title)}</em> (${escapeHtml(songTypeLabel(s.type))})<br>
         Energy ${fmtTriple(s.energy)}<br>Wisdom ${fmtTriple(s.wisdom)}${
           t ? `<br>${escapeHtml([...LAYERS, ...themeLayers(data.meta)].find((l) => l.id === state.layer).label)} ${fmtTriple(t)}` : ""
-        }<br><span class="muted">Confidence: ${escapeHtml(s.confidence)} · click for the full spectrum</span>`;
+        }<br><span class="muted">Confidence: ${escapeHtml(s.confidence)} \u00b7 click for the full spectrum</span>`;
     }
     tooltip.html(`<strong>${escapeHtml(g.name)}</strong><br>${body}`).attr("hidden", null);
     const box = document.getElementById("map-wrap").getBoundingClientRect();
@@ -208,7 +208,7 @@ function init(data, topo) {
   function renderTable() {
     const tb = document.querySelector("#geo-table tbody");
     const label = [...LAYERS, ...themeLayers(data.meta)].find((l) => l.id === state.layer).label;
-    document.getElementById("table-layer-h").textContent = state.layer === "combined" ? "Energy · Wisdom [90%]" : `${label} [90%]`;
+    document.getElementById("table-layer-h").textContent = state.layer === "combined" ? "Energy \u00b7 Wisdom [90%]" : `${label} [90%]`;
     const rows = [...data.geos].sort((a, b) => a.name.localeCompare(b.name));
     tb.innerHTML = rows.map((g) => {
       const s = songFor(g);
