@@ -15,7 +15,12 @@ export function loadAtlas() {
       .catch(() =>
         Promise.all([
           fetchJson("data/atlas-core.json"),
-          ...[0, 1, 2, 3, 4, 5, 6].map((i) => fetchJson(`data/atlas-songs-${i}.json`)),
+          ...[0, 1, 2, 3, 4, 5, 6].map((i) =>
+            Promise.all([
+              fetchJson(`data/atlas-songs-${i}.json`).catch(() => ({})),
+              fetchJson(`data/atlas-songs-${i}b.json`).catch(() => ({})),
+            ]).then(([a, b]) => Object.assign({}, a, b))
+          ),
         ]).then(([core, ...parts]) => ({
           meta: core.meta,
           geos: core.geos,
@@ -42,13 +47,25 @@ export function loadWorldTopo() {
   return fetchJson("data/world.topo.json").catch(() =>
     Promise.all([
       fetchJson("data/world-head.json"),
-      ...[0, 1, 2, 3, 4].map((i) => fetchJson(`data/world-arcs-${i}.json`)),
+      ...[0, 1, 2, 3].map((i) => fetchJson(`data/world-arcs-${i}.json`)),
+      fetchJson("data/world-arcs-4.json")
+        .then((a) =>
+          fetchJson("data/world-arcs-4b.json")
+            .then((b) => (Array.isArray(a) && a.length < 200 ? a.concat(b) : a))
+            .catch(() => a)
+        )
+        .catch(() =>
+          Promise.all([
+            fetchJson("data/world-arcs-4a.json"),
+            fetchJson("data/world-arcs-4b.json"),
+          ]).then(([a, b]) => a.concat(b))
+        ),
     ]).then(([head, ...arcParts]) => ({ ...head, arcs: arcParts.flat() }))
   );
 }
 
 export const LAYERS = [
-  { id: "combined", label: "Energy × Wisdom (combined)", group: "Axes" },
+  { id: "combined", label: "Energy \u00d7 Wisdom (combined)", group: "Axes" },
   { id: "energy", label: "Energy", group: "Axes" },
   { id: "wisdom", label: "Wisdom", group: "Axes" },
   { id: "sub:mobilisation", label: "Mobilisation (sub-index of Energy)", group: "Axes" },
