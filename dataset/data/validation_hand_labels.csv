@@ -1,0 +1,31 @@
+song_id,country,labels,annotator_note
+S088,Kuwait,history|divine|monarch|future|reflective,
+S122,Nicaragua,universal|reflective,cannon/blood mentioned only as 'no more' (peace theme)
+S023,Brazil,nature|sacred_mother|freedom|martial|future,
+S011,The Bahamas,future|unity|divine,'march' is metaphorical
+S174,Togo,history|freedom|martial|divine|unity|future|universal|reflective,
+S002,Algeria,martial|freedom,
+S123,Niger,unity|universal|freedom|martial|history|future|reflective,
+S096,Liechtenstein,nature|divine|monarch,
+S068,Guinea-Bissau,nature|history|freedom|martial|unity|future,
+S065,Grenada,unity|future|divine|history,
+S110,Moldova,nature|history|divine|reflective,language/culture as theme
+S098,Luxembourg,nature|divine|freedom,
+S140,Republic of the Congo,unity|freedom|martial|future,
+S067,Guinea,history|freedom|unity|martial,
+S192,Yemen,unity|martial|universal|future|freedom,
+S158,Solomon Islands,divine|universal|future|unity,
+S025,Bulgaria,nature|sacred_mother|martial|freedom,
+S101,Malaysia,sacred_mother|unity|future|divine|monarch,"'land where my blood spills' is an idiom for birthplace, not martial"
+S156,Slovakia,nature|freedom|martial|unity,
+S048,Ecuador,martial|freedom|divine|history|sacred_mother,
+S182,Ukraine,freedom|martial|unity|nature|future|history,
+S141,Romania,martial|freedom|history|future,
+S145,Saint Lucia,nature|universal|divine|unity|reflective|future,
+S076,Iran,divine|freedom|martial|universal,
+S190,Venezuela,freedom|divine|unity|martial|reflective,
+S173,Timor-Leste,freedom|martial|unity|future,
+S212,Wales,nature|history|martial|freedom|reflective|sacred_mother,
+S222,Hungary,history|martial|freedom|sacred_mother,
+S238,Catalonia,martial|freedom|monarch|divine,
+S249,Nepal (1962-2006),monarch|divine|unity|martial,
